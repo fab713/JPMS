@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jpms.zl.mapper.TbSysroleMapper" >
+  <resultMap id="BaseResultMap" type="com.jpms.zl.pojo.TbSysrole" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ROLENAME" property="rolename" jdbcType="VARCHAR" />
+    <result column="GROUPID" property="groupid" jdbcType="CHAR" />
+    <result column="VCHAR1" property="vchar1" jdbcType="VARCHAR" />
+    <result column="VCHAR2" property="vchar2" jdbcType="VARCHAR" />
+    <result column="VCHAR3" property="vchar3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ROLENAME, GROUPID, VCHAR1, VCHAR2, VCHAR3
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jpms.zl.pojo.TbSysroleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from JPMS.TB_SYSROLE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from JPMS.TB_SYSROLE
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from JPMS.TB_SYSROLE
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jpms.zl.pojo.TbSysroleExample" >
+    delete from JPMS.TB_SYSROLE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jpms.zl.pojo.TbSysrole" >
+    insert into JPMS.TB_SYSROLE (ID, ROLENAME, GROUPID, 
+      VCHAR1, VCHAR2, VCHAR3
+      )
+    values (#{id,jdbcType=VARCHAR}, #{rolename,jdbcType=VARCHAR}, #{groupid,jdbcType=CHAR}, 
+      #{vchar1,jdbcType=VARCHAR}, #{vchar2,jdbcType=VARCHAR}, #{vchar3,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jpms.zl.pojo.TbSysrole" >
+    insert into JPMS.TB_SYSROLE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="rolename != null" >
+        ROLENAME,
+      </if>
+      <if test="groupid != null" >
+        GROUPID,
+      </if>
+      <if test="vchar1 != null" >
+        VCHAR1,
+      </if>
+      <if test="vchar2 != null" >
+        VCHAR2,
+      </if>
+      <if test="vchar3 != null" >
+        VCHAR3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="rolename != null" >
+        #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="groupid != null" >
+        #{groupid,jdbcType=CHAR},
+      </if>
+      <if test="vchar1 != null" >
+        #{vchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar2 != null" >
+        #{vchar2,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar3 != null" >
+        #{vchar3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jpms.zl.pojo.TbSysroleExample" resultType="java.lang.Integer" >
+    select count(*) from JPMS.TB_SYSROLE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update JPMS.TB_SYSROLE
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rolename != null" >
+        ROLENAME = #{record.rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.groupid != null" >
+        GROUPID = #{record.groupid,jdbcType=CHAR},
+      </if>
+      <if test="record.vchar1 != null" >
+        VCHAR1 = #{record.vchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vchar2 != null" >
+        VCHAR2 = #{record.vchar2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vchar3 != null" >
+        VCHAR3 = #{record.vchar3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update JPMS.TB_SYSROLE
+    set ID = #{record.id,jdbcType=VARCHAR},
+      ROLENAME = #{record.rolename,jdbcType=VARCHAR},
+      GROUPID = #{record.groupid,jdbcType=CHAR},
+      VCHAR1 = #{record.vchar1,jdbcType=VARCHAR},
+      VCHAR2 = #{record.vchar2,jdbcType=VARCHAR},
+      VCHAR3 = #{record.vchar3,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jpms.zl.pojo.TbSysrole" >
+    update JPMS.TB_SYSROLE
+    <set >
+      <if test="rolename != null" >
+        ROLENAME = #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="groupid != null" >
+        GROUPID = #{groupid,jdbcType=CHAR},
+      </if>
+      <if test="vchar1 != null" >
+        VCHAR1 = #{vchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar2 != null" >
+        VCHAR2 = #{vchar2,jdbcType=VARCHAR},
+      </if>
+      <if test="vchar3 != null" >
+        VCHAR3 = #{vchar3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jpms.zl.pojo.TbSysrole" >
+    update JPMS.TB_SYSROLE
+    set ROLENAME = #{rolename,jdbcType=VARCHAR},
+      GROUPID = #{groupid,jdbcType=CHAR},
+      VCHAR1 = #{vchar1,jdbcType=VARCHAR},
+      VCHAR2 = #{vchar2,jdbcType=VARCHAR},
+      VCHAR3 = #{vchar3,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
